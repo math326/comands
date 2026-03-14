@@ -1,0 +1,30 @@
+INSTALANDO QEMU NO ARCH:
+
+
+instale o qemu:
+sudo pacman -S qemu
+escolha : 2) qemu-desktop
+
+sudo pacman -S virt-manager libvirt virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
+
+sudo systemctl enable --now libvirtd
+
+sudo usermod -aG libvirt,kvm user
+
+para transformar .vdi em qcow2:
+qemu-img convert -f vdi -O qcow2 nome_do_seu_disco.vdi calamaro_os.qcow2
+
+Para criar VM com qemu e ssh no localhost em 2222:
+qemu-system-x86_64 -enable-kvm -m 4G -cpu host -smp 4 -drive file=/home/user/Documentos/calamaro_os.qcow2,format=qcow2,if=virtio -netdev user,id=net0,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=net0 -vga virtio -display gtk
+
+caso não tenha o disco da vm crie um e instale a vm com:
+qemu-system-x86_64 -enable-kvm -m 4G -cpu host -smp 4 -drive file=/home/user/Documentos/novo_sistema.qcow2,format=qcow2,if=virtio -cdrom /caminho/para/sua/imagem.iso -boot d -netdev user,id=net0 -device virtio-net-pci,netdev=net0 -vga virtio -display gtk
+
+para configurar chave ssh na máquina:
+como você configurou o ssh em localhost na porta 2222 faça isso em config do .ssh : 
+Host calamaro
+ HostName 127.0.0.1
+ User matheus
+ Port 2222
+ IdentityFile ~/.ssh/id_rsa_calamaro
+ IdentitiesOnly yes

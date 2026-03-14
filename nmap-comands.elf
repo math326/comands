@@ -1,0 +1,12 @@
+COMANDS EFICIENTES NMAP:
+
+1) nmap -sn ip\24 = hosts ativos
+
+2) nmap -sV ip = sistema operacional
+
+3) nmap -sn -PR IP/24 = mostra mac dos ips
+
+
+nmap -p 8006 192.168.1.0/24 = Procura qual host está com essa porta aberta na rede
+
+sudo nmap -O 192.168.1.0/24 = Mostra SO de todos hosts da rede.

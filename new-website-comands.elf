@@ -1,0 +1,181 @@
+CRIAÇÃO DE SITE
+
+
+Para começar novo projeto de site:
+
+sudo apt update & sudo apt install npm nodejs nginx postgresql postgresql-contrib openjdk-21-jdk python3 -y
+sudo -iu postgres initdb -D /var/lib/postgres/data
+sudo systemctl enable –now postgresql
+sudo systemctl start postgresql
+
+mkdir projeto = cria pasta do projeto
+
+cd projeto = entra no projeto
+
+touch server.js = cria arquivo de servidor localhost do projeto
+
+mkdir public = cria pasta de códigos de páginas do projeto.
+
+npm init -y = inicia npm na pasta do projeto e cria package.json
+
+npm install express = baixa bibliotecas que seu projeto precisa.
+
+cd public = entra no diretório de código de páginas do site.
+
+touch index.html style.css = cria arquivos de pagina principal e estilo.
+
+mkdir imagens = cria pasta para colocar imagens do site.
+
+
+Quando reescrever o código:
+
+
+rm -r node_modules = apaga node_modules
+
+npm install = recria node_modules
+
+
+
+
+
+para criar pagina inicial do site
+
+mkdir projeto
+npm init -y
+npm install express
+touch index.html server.js
+
+cole isso em server.js:
+const express = require('express');
+const path = require('path');
+
+const app = express();
+const PORT = 4471;
+
+// Servir todos os arquivos da pasta atual
+app.use(express.static(__dirname));
+
+// Rota padrão para index.html
+app.get('/', (req, res) => {
+ res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.listen(PORT, () => {
+ console.log(`Servidor rodando em http://localhost:${PORT}`);
+});
+
+Para o site rodar sozinho na porta dele:
+
+npm install -g pm2
+pm2 start server.js
+pm2 startup
+pm2 save
+
+
+
+
+
+
+
+
+
+
+Para colocar novo site na porta 80
+
+nano /etc/nginx/sites-available/name
+cole isso;👇👇👇
+
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+
+ln -s /etc/nginx/sites-available/name /etc/nginx/sites-enabled/
+
+se não der certo rode = rm /etc/nginx/sites-enabled/default
+
+nginx -t = verifica
+
+sudo systemctl restart nginx = reinicia
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TROCAR UM SITE DA PORTA 80 POR OUTRO
+
+rm /etc/nginx/sites-enabled/name
+
+nano /etc/nginx/sites-available/novo-site
+
+server {
+    listen 80;
+    server_name _;
+
+    location / {
+        proxy_pass http://127.0.0.1:3001;
+    }
+}
+
+ln -s /etc/nginx/sites-available/novo-site /etc/nginx/sites-enabled/
+
+nginx -t
+
+systemctl restart nginx
+
+
+
+PARA CRIAR USUARIO E BANCO DE DADOS:
+
+=============================================
+CREATE USER you-name WITH PASSWORD '2985382';
+CREATE DATABASE name-website OWNER you-name;
+\q
+=============================================
+
+ALTER USER postgres WITH PASSWORD '2985382'; = bota senha
+
+salvar banco de dados:
+pg_dump "postgresql://postgres:2985382@localhost:5432/name-database" > name-database.sql
+
+
+
+
+
+
+PARA ENTRAR NO BANCO DE DADOS:
+sudo -u postgres psql name-database
+
+
+
+
+
+apaga banco:
+
+DROP DATABASE nome_do_banco;
+
+coloca banco
+
+psql "postgresql://postgres:2985382@localhost:5432/name-database" < name-database.sql
+

@@ -1,0 +1,104 @@
+COMANDOS IMPORTANTES KALI LINUX|DEBIAN
+--------------------------------------------------------------------
+(SUDO SU) passwd matheus = muda a senha
+
+sudo systemctl enable --now ssh = ativa o ssh
+
+sudo systemctl status ssh = verifica se o ssh tá ativado 
+
+whoami = nome de usuario
+
+which programa = onde está o programa
+
+curl ifconfig.me = IPV6
+
+ip a = ip da rede
+
+df -h = armazenamento
+
+unzip arquivo = descompacta
+
+hostname -I = mostra o ip da rede e o IPV6
+
+nano arquivo = cria arquivo de texto
+
+vi wordlist = cria wordlist = esc + : wq = sai da wordlist
+
+cp -r ~/Downloads/arqui ~/dir/ = clona e transporta arquivo entre diretórios
+
+scp arquivo user@192.168.1.10:/home/user = envia arquivo via ssh
+
+rm -r nome = apaga diretório
+
+mv nome novo_ nome = muda nome de diretório
+
+mv ~/share/rockyou.txt ~/wordlists/ = muda arquivo de diretório para outro
+
+ls -l --block-size=M = mostra armazenamento de cada arquivo
+
+systemctl list-unit-files --type=service   = lista os serviços systemctl
+
+ssh-keygen -R 192.168.0.12 = remove chave antiga do ssh 
+
+ls -d .* = lista arquivos ocultos
+
+nproc = mostra quantos nucleos tem o computador
+
+micro file = abre arquivo com numeração nas linhas
+
+top = mostra processos sendo executados.
+
+free -h = mostra quanto de RAM tem na máquina
+
+du -sh /home/seu_usuario = mostra quantos GB tem uma pasta.
+
+grep -n "SocksPort" /etc/tor/torrc = encontra a linha que está aquele código no arquivo.
+
+ssh -D 4554 usuario@IP_DA_VPS = faz o tráfego da sua rede passar por uma vps.
+
+cat /etc/os-release = mostra SO & uname -a = informações kernel
+==============================================================
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_kali  = gera par de chaves ssh
+
+o texto da chave .pub vai para .ssh/authorized_keys no servidor e chave privada fica com voce.
+depois no cervidor de:
+chmod 700 ~/.ssh 
+chmod 600 ~/.ssh/authorized_keys
+chown $USER:$USER ~/.ssh -R
+
+no seu computador:
+
+nano ~/.ssh/config
+cole isso:
+
+Host kali
+  HostName 192.168.1.5
+  User kali
+  IdentityFile ~/.ssh/id_rsa_kali
+  IdentitiesOnly yes
+
+chmod 600 ~/.ssh/config
+ssh kali
+================================================
+
+gunzip arquivo.gz = extrai .gz
+
+unzip arquivo.zip = extrai zip
+
+tar -xzvf nome_do_arquivo.tar.gz = extrai .tar.gz
+
+7z x arquivo.7z = extrai 7z
+
+zip arquivo.zip arquivo_original.txt = transforma arquivo em .zip
+
+zip -e arquivo.zip matheus.txt = zipa arquivo com senha
+
+para formatar pendrive
+
+sudo pacman -S exfatprogs
+sudo umount /dev/sdb1
+sudo umount /dev/sdb2
+sudo wipefs -a /dev/sdb
+sudo parted /dev/sdb mklabel gpt
+sudo parted -a optimal /dev/sdb mkpart primary 0% 100%
+sudo mkfs.exfat /dev/sdb1

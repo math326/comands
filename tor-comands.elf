@@ -1,0 +1,31 @@
+TOR COMANDS:
+
+como criar site onion:
+
+Edite o arquivo /etc/tor/torrc HiddenServiceDir/var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:3000
+
+Reinicie o tor: sudo systemctl restart tor
+
+descubra o URL: sudo cat /var/lib/tor/hidden_service/hostname
+
+certifique de que seu site está rodando em localhost na porta 3000
+
+COMO FAZER O TRÁFEGO DA REDE PASSAR POR UMA VPS COM A REDE TOR ATIVADA:
+
+abra /etc/tor/torrc na sua VPS
+
+coloque isso no final do arquivo:
+
+SocksPort 0.0.0.0:9050
+SocksPolicy accept *
+
+sudo systemctl restart tor
+
+
+PARA BAIXAR PACOTE COM PACMAN OU APT PASSANDO PELA REDE TOR:
+
+sudo pacman -S tor torsocks
+
+torsocks pacman -Syu 
+torsocks pacman -S nome-do-pacote
