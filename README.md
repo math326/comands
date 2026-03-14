@@ -32,4 +32,8 @@ qemu-comands.elf = documenta comandos usados na criação de VMs com kvm e qemu
 
 prismlauncher.sh = shell script que faz a instalação do prismlauncher no arch linux para rodar minecraft java
 
-vir-box.sh = resolve erro de conflitos de virtualização aninhada e permissões de hardware para o virtual box rode no debian
+vir-box.sh = shell script que resolve erro de conflitos de virtualização aninhada e permissões de hardware para o virtual box rode no debian
+
+para executar um shell script de chmod +x name_shell_script.sh
+
+sudo bash name_shell_script.sh
