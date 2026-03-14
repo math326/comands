@@ -30,7 +30,9 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
 
+PARA BAIXAR AUDIO DE MUSICA DO YOUTUBE E TRANSFORMAR EM MP3 USE:
 
+yt-dlp -4 -x --audio-format mp3 --no-playlist "https://www.youtube.com/watch?v=gdx7gN1UyX0"
 
 
 

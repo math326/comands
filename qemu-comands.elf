@@ -19,6 +19,7 @@ qemu-system-x86_64 -enable-kvm -m 4G -cpu host -smp 4 -drive file=/home/user/Doc
 
 caso não tenha o disco da vm crie um e instale a vm com:
 
+
 qemu-img create -f qcow2 /home/matheus/Documentos/gentoo.qcow2 80G
 
 
