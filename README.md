@@ -29,3 +29,7 @@ new-website-comands.elf = documenta comandos de criação de sites
 kleopatra-comands.elf = documenta comandos importantes usados em criptografia pgp
 
 qemu-comands.elf = documenta comandos usados na criação de VMs com kvm e qemu
+
+prismlauncher.sh = shell script que faz a instalação do prismlauncher no arch linux para rodar minecraft java
+
+vir-box.sh = resolve erro de conflitos de virtualização aninhada e permissões de hardware para o virtual box rode no debian
