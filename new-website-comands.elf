@@ -179,3 +179,149 @@ coloca banco
 
 psql "postgresql://postgres:2985382@localhost:5432/name-database" < name-database.sql
 
+
+
+
+
+
+
+=====================================================================
+PARA CRIAR SITE EM CONTAINER E BANCO DE DADOS EM OUTRA MAQUINA
+=====================================================================
+
+NA MAQUINA ONDE FICARA O BANCO DE DADOS DE ESSES COMANDOS:
+
+sudo apt update
+sudo apt install postgresql -y
+sudo systemctl enable --now postgresql
+
+sudo ufw default deny incoming
+sudo ufw allow from IP_DO_SERVIDOR_DO_SITE to any port 22
+sudo ufw enable
+
+sudo -u postgres psql
+
+
+=================================================
+CREATE DATABASE login_db;
+\c login_db
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username TEXT,
+    password TEXT
+);
+==============================================
+
+
+================================================
+INSERT INTO users (username, password)
+SELECT 
+    'user' || i,
+    'pass' || i
+FROM generate_series(1,50) AS s(i);
+================================================
+
+ALTER USER postgres WITH PASSWORD '1234';
+
+\q
+
+sudo nano /etc/postgresql/*/main/postgresql.conf
+ALTERAR LINHA PARA: 
+listen_addresses = 'localhost'
+
+sudo nano /etc/postgresql/*/main/pg_hba.conf
+ADICIONE A LINHA:
+host all all 127.0.0.1/32 md5
+
+sudo systemctl restart postgresql
+
+NA MAQUINA ONDE FICARA O SITE DE ESSES COMANDOS:
+
+mkdir login-app
+cd login-app
+npm init -y
+npm install express body-parser pg
+
+nano server.js
+COLOCA ISSO:
+
+==========================================================
+const express = require("express");
+const bodyParser = require("body-parser");
+const { Client } = require("pg");
+
+const app = express();
+app.use(bodyParser.json());
+app.use(express.static("public"));
+
+const client = new Client({
+  host: "127.0.0.1",
+  user: "postgres",
+  password: "1234",
+  database: "login_db",
+  port: 5432
+});
+
+// conectar no banco
+client.connect()
+  .then(() => console.log("Conectado ao PostgreSQL"))
+  .catch(err => console.error("Erro ao conectar no banco:", err));
+
+// ROTA DE LOGIN
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const result = await client.query(
+      "SELECT * FROM users WHERE username=$1 AND password=$2",
+      [username, password]
+    );
+
+    if (result.rows.length > 0) {
+      res.json({ success: true, message: "Bem-vindo " + username });
+    } else {
+      res.json({ success: false, message: "Login inválido" });
+    }
+
+  } catch (err) {
+    console.error("Erro na query:", err);
+    res.status(500).json({ success: false, message: "Erro interno no servidor" });
+  }
+});
+
+app.listen(4000, () => {
+  console.log("Servidor rodando em http://localhost:4000");
+});
+
+===========================================================================
+
+
+nano Dockerfile
+COLOCA ASSIM:
+==================================================
+FROM node:18
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+EXPOSE 4000
+
+CMD ["node", "server.js"]
+====================================================
+AGORA COLOQUE O PROJETO EM UM CONTAINER E RODE ELE:
+
+ssh -L 5432:localhost:5432 user@IP_PUBLIC
+
+docker build -t login-app .
+
+docker run -p 4000:4000 login-app
+
+-----------------------------------------------------------------
+OBS: O servidor do banco de dados pode ter IP público, MAS:
+		porta 22 (SSH) restrita
+				porta 5432 fechada
+-----------------------------------------------------------------

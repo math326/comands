@@ -19,14 +19,14 @@ qemu-system-x86_64 -enable-kvm -m 4G -cpu host -smp 4 -drive file=/home/user/Doc
 
 caso não tenha o disco da vm crie um e instale a vm com:
 
-
 qemu-img create -f qcow2 /home/matheus/Documentos/gentoo.qcow2 80G
 
 
-qemu-system-x86_64 -enable-kvm -m 4G -cpu host -smp 4 -drive file=/home/user/Documentos/novo_sistema.qcow2,format=qcow2,if=virtio -cdrom /caminho/para/sua/imagem.iso -boot d -netdev user,id=net0 -device virtio-net-pci,netdev=net0 -vga virtio -display gtk
+qemu-system-x86_64 -enable-kvm -m 4G -cpu host -smp 4 -drive file=~/Documentos/kali-linux-2025.4-qemu-amd64.qcow2,format=qcow2,if=virtio -device virtio-vga-gl -display gtk,gl=on -netdev user,id=net0,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=net0
 
 para configurar chave ssh na máquina:
 como você configurou o ssh em localhost na porta 2222 faça isso em config do .ssh : 
+
 Host calamaro
  HostName 127.0.0.1
  User matheus

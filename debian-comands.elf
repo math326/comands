@@ -54,6 +54,8 @@ du -sh /home/seu_usuario = mostra quantos GB tem uma pasta.
 
 grep -n "SocksPort" /etc/tor/torrc = encontra a linha que está aquele código no arquivo.
 
+sed -i 's/texto_antigo/texto_novo/g' arquivo.txt = muda a linha do texto do arquivo.
+
 ssh -D 4554 usuario@IP_DA_VPS = faz o tráfego da sua rede passar por uma vps.
 
 sudo dmidecode --type 17 = mostra o tipo de memoria ram
