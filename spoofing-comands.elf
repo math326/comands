@@ -1,0 +1,27 @@
+SPOOFING
+
+
+
+VÁ EM GMAIL E CLIQUE EM GERENCIAR SUA CONTA DO GOOGLE E PROCURE POR SENHA DE APP E CRIE UMA SENHA E SALVE ELA.
+
+INSTALE A FERRAMENTA SET (setoolkit)
+
+De: sudo setoolkit
+
+escolha a opção:   Social-Engineering Attacks
+
+escolha a opção: Mass Mailer Attack
+
+escolha a opção:    E-Mail Attack Single Email Address
+
+coloque o email do alvo: exemple@gmail.com
+
+escolha a opção:  Use a gmail Account for your email attack.
+
+coloque seu gmail real que vai usar para o phishing: exemple33@gmail.com
+
+agora coloque o nome que quer que apareça para o alvo.
+
+agora coloque a senha que você criou em senha de app do seu gmail.
+
+Agora escreva o conteúdo do email.
