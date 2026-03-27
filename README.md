@@ -40,5 +40,4 @@ para executar um shell script de chmod +x name_shell_script.sh
 
 sudo bash name_shell_script.sh
 
-PASTA PY = Contem scripts em python como producer_template.py & consumer_template.py que são scripts para serem usados no kafka
-e jogolo.py é um jogo de terminal que eu fiz.
+PASTA KAFKA = Código template de Producer e Consumer para se usar em java spring em produção.
