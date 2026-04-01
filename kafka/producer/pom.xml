@@ -65,6 +65,30 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Actuator — expõe endpoints de health check e métricas da aplicação -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!-- Micrometer Prometheus — exporta métricas no formato Prometheus para monitoramento -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
+        <!-- Validation — habilita anotações de validação (@NotBlank, @DecimalMin, etc.) nos DTOs -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <!-- Security — adiciona autenticação e autorização HTTP à aplicação -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
