@@ -1,0 +1,150 @@
+# Tipos de Variáveis Java — Anotação de referência
+
+---
+
+## Como ler uma variável em Java
+
+```
+private   String    cpf    =  "123.456.789-00";
+↑         ↑         ↑         ↑
+acesso    tipo      nome      valor
+```
+
+=================================================================
+SEMPRE QUE HOUVER ARMAZENAMENTO DE NUMEROS COM SCANNER USE:	|
+								|
+System.out.println("Digite um numero: ");			|
+int numero = scanner.nextInt();					|
+scanner.nextLine();						|
+								|
+=================================================================
+
+
+---
+
+## Tipos primitivos — guardam um valor simples
+
+| Tipo      | O que guarda          | Exemplo                        |
+|-----------|-----------------------|--------------------------------|
+| `int`     | número inteiro        | `int idade = 25;`              |
+| `long`    | número inteiro grande | `long id = 1711584000000L;`    |
+| `double`  | número decimal        | `double altura = 1.75;`        |
+| `float`   | decimal menor         | `float taxa = 0.5f;`           |
+| `boolean` | verdadeiro ou falso   | `boolean ativo = true;`        |
+| `char`    | um único caractere    | `char letra = 'A';`            |
+| `byte`    | número de -128 a 127  | `byte nivel = 100;`            |
+| `short`   | número inteiro pequeno| `short porta = 8080;`          |
+
+> **Regra:** `int` para números do dia a dia. `long` quando o número é muito grande (IDs, timestamps). `double` para decimais. `boolean` para sim/não. Os outros raramente aparecem.
+
+---
+
+## Tipos de objeto — guardam dados complexos
+
+| Tipo            | O que guarda                      | Exemplo                                  |
+|-----------------|-----------------------------------|------------------------------------------|
+| `String`        | texto                             | `String nome = "João";`                  |
+| `Integer`       | int que pode ser null             | `Integer codigo = null;`                 |
+| `Long`          | long que pode ser null            | `Long id = null;`                        |
+| `Double`        | double que pode ser null          | `Double preco = null;`                   |
+| `Boolean`       | boolean que pode ser null         | `Boolean ativo = null;`                  |
+| `BigDecimal`    | decimal com precisão total        | `BigDecimal preco = new BigDecimal("99.90");` |
+| `LocalDate`     | só data (sem hora)                | `LocalDate hoje = LocalDate.now();`      |
+| `LocalDateTime` | data + hora                       | `LocalDateTime agora = LocalDateTime.now();` |
+| `Optional<T>`   | valor que pode não existir        | `Optional<String> cpf = Optional.empty();` |
+
+> **Regra:** primitivo (`int`, `double`) não pode ser null. Objeto (`Integer`, `Double`) pode ser null. Use primitivo sempre que puder — é mais rápido. Use objeto quando o valor pode não existir.
+
+---
+
+## Tipos de coleção — guardam vários valores
+
+| Tipo          | O que guarda                        | Exemplo                                      |
+|---------------|-------------------------------------|----------------------------------------------|
+| `List<T>`     | lista ordenada, permite repetição   | `List<String> nomes = new ArrayList<>();`    |
+| `Set<T>`      | lista sem repetição, sem ordem      | `Set<String> cpfs = new HashSet<>();`        |
+| `Map<K,V>`    | chave → valor                       | `Map<String,String> dados = new HashMap<>();`|
+| `Queue<T>`    | fila — primeiro que entra sai primeiro | `Queue<String> fila = new LinkedList<>();`|
+| `T[]`         | array fixo — tamanho não muda       | `String[] nomes = new String[3];`            |
+
+> **Regra:** use `List` na maioria dos casos. Use `Set` quando não pode repetir. Use `Map` quando precisar de chave e valor. Array `[]` raramente — prefira List.
+
+---
+
+## Modificadores de acesso — quem pode ver a variável
+
+| Modificador   | Quem pode acessar                          |
+|---------------|--------------------------------------------|
+| `public`      | qualquer classe em qualquer lugar          |
+| `private`     | só dentro da própria classe                |
+| `protected`   | a própria classe e as filhas (extends)     |
+| sem nada      | só classes do mesmo pacote                 |
+
+> **Regra:** atributos de classe = sempre `private`. Métodos que outros usam = `public`. Métodos internos = `private`.
+
+---
+
+## Modificadores especiais
+
+| Modificador | O que faz                                              |
+|-------------|--------------------------------------------------------|
+| `static`    | pertence à classe, não ao objeto — não precisa de `new`|
+| `final`     | valor não pode mudar depois de definido                |
+| `void`      | método não retorna nada                                |
+
+```java
+public static void main(String[] args)  // static = chama sem criar objeto
+public final String CPF_PADRAO = "000"; // final = constante, não muda
+public void processar()                 // void = não retorna nada
+```
+
+---
+
+## Tipos no Spring Kafka
+
+| Tipo                         | O que é                                      |
+|------------------------------|----------------------------------------------|
+| `KafkaTemplate<String,String>` | producer — envia String para String        |
+| `ConsumerRecord<String,String>`| mensagem recebida com chave e valor        |
+| `ProducerRecord<String,String>`| mensagem a ser enviada com chave e valor   |
+| `ListenableFuture`           | resultado assíncrono do envio               |
+
+
+---
+
+## Tipos no Android SDK
+
+| Tipo       | O que é                                        |
+|------------|------------------------------------------------|
+| `Bundle`   | pacote de dados entre telas                    |
+| `Intent`   | intenção de navegar ou fazer algo              |
+| `Context`  | contexto do app — acesso a recursos do sistema |
+| `View`     | qualquer componente visual                     |
+| `Drawable` | imagem ou ícone                                |
+| `Bitmap`   | imagem em memória                              |
+| `Uri`      | endereço de recurso (arquivo, link, contato)   |
+
+```java
+// os mais usados no dia a dia
+Context context = this;           // a Activity é um Context
+Intent intent = new Intent(...);  // navegação
+Bundle bundle = new Bundle();     // pacote de dados
+View view = findViewById(R.id.x); // componente visual
+```
+
+---
+
+## Regra rápida para identificar o tipo no código
+
+```
+String     nome     → texto
+int        idade    → número inteiro pequeno
+long       id       → número inteiro grande (IDs)
+double     preco    → decimal (não use pra dinheiro)
+BigDecimal preco    → decimal preciso (use pra dinheiro)
+boolean    ativo    → true ou false
+List<X>    lista    → vários Xs em sequência
+Map<K,V>   mapa     → chave K aponta para valor V
+Optional<X> valor   → X que pode não existir (pode ser null)
+void       (retorno)→ método não devolve nada
+```

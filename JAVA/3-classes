@@ -1,0 +1,17 @@
+
+
+
+=================================================================================================
+REGRA DE MAIUSCULO E MINUSCULO:									|
+												|
+Scanner scanner = new Scanner(System.in);							|
+↑               ↑										|
+molde           objeto que você criou do molde							|
+(a fábrica)     (o produto da fábrica)								|
+												|
+Scanner maiúsculo é a fábrica. scanner minúsculo é o produto que saiu da fábrica. 		|
+Você sempre chama método no produto, não na fábrica.						|
+É igual no mundo real — você não liga para a fábrica da Brastemp para esquentar seu leite. 	|
+Você usa o micro-ondas que a fábrica produziu. 							|
+Brastemp é a classe, seu micro-ondas é a variável.						|
+=================================================================================================

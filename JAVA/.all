@@ -1,0 +1,54 @@
+DE FORMA GERAL VOCE PODE LER CÓDIGOS COMPLEXOS EM JAVA QUE VOCE NUNCA VIU NA VIDA E ENTENDER COMO ELE FUNCIONA APENAS SABENDO DOS IMPORTS NAS EDÇÕES DE URL DE DOCUMENTAÇÕES:
+
+
+=========================================================================================
+VAMOS SUPOR QUE O CÓDIGO TENHA ESSAS BIBLIOTECAS:					|
+											|
+import android.os.Bundle;								|
+import android.widget.TextView;								|
+import android.widget.Button;								|
+import android.content.Intent;								|
+import androidx.appcompat.app.AppCompatActivity;					|
+											|
+**Agora aplica o método:**								|
+											|
+**Passo 1 — pega cada import e monta a URL:**						|
+```											|
+android.os.Bundle									|
+→ https://developer.android.com/reference/android/os/Bundle				|
+											|
+android.widget.TextView									|
+→ https://developer.android.com/reference/android/widget/TextView			|
+											|
+android.widget.Button									|
+→ https://developer.android.com/reference/android/widget/Button				|
+											|
+android.content.Intent									|
+→ https://developer.android.com/reference/android/content/Intent			|
+											|
+androidx.appcompat.app.AppCompatActivity						|
+→ https://developer.android.com/reference/androidx/appcompat/app/AppCompatActivity	|
+```											|
+=========================================================================================
+
+
+
+
+
+
+
+
+=========================================================================================
+PARA PROCURAR NO JAVA PURO:								|
+											|
+https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/NOMEDACLASSE.html|
+											|
+Exemplos:										|
+ArrayList  → .../java/util/ArrayList.html						|
+HashMap    → .../java/util/HashMap.html							|
+Scanner    → .../java/util/Scanner.html							|
+Optional   → .../java/util/Optional.html						|
+String     → .../java/lang/String.html  ← String fica em lang, não util			|
+Math       → .../java/lang/Math.html    ← Math também fica em lang			|
+											|
+=========================================================================================
