@@ -1,0 +1,211 @@
+# ORDEM PARA COMEÇAR UM PROJETO JAVA
+# Dois níveis: pensar antes e escrever depois
+
+---
+=================================================================
+## NÍVEL 1 — PENSAR ANTES DE ABRIR O EDITOR			|
+## (ordem do raciocínio — no papel ou na cabeça)		|
+								|
+1. Qual é o objetivo do projeto?				|
+   → o que ele precisa fazer no final?				|
+								|
+2. Qual framework vou usar?					|
+   → Java puro / Spring Boot / Android SDK / LibGDX		|
+								|
+3. Quais classes preciso criar?					|
+   → cada responsabilidade = uma classe separada		|
+   → cada classe = um arquivo .java com o mesmo nome		|
+								|
+4. Para cada classe — quais atributos ela guarda?		|
+   → quais dados definem esse objeto?				|
+   → qual modificador de acesso? private / public / protected	|
+   → qual modificador de comportamento? static / final / nenhum	|
+								|
+5. Para cada classe — quais métodos ela precisa ter?		|
+   → o que esse objeto sabe fazer?				|
+   → o que entra, o que faz, o que sai?				|
+								|
+6. Quais classes se relacionam?					|
+   → alguma herda de outra? → extends				|
+   → alguma implementa contrato? → implements			|
+   → alguma usa outra? → atributo ou parâmetro			|
+								|
+7. Qual classe tem o main?					|
+   → é a classe que inicia tudo					|
+   → geralmente se chama Main ou tem o nome do projeto		|
+=================================================================
+---
+
+
+
+
+
+=================================================================
+## NÍVEL 2 — ESCREVER O CÓDIGO					|
+## (ordem dentro de cada arquivo .java)				|
+								|
+```								|
+1° — package (se o projeto tiver pastas organizadas)		|
+     package com.meuprojeto.service;				|
+								|
+2° — imports (bibliotecas que essa classe usa)			|
+     import java.util.Scanner;					|
+     import java.util.ArrayList;				|
+								|
+3° — anotações da classe (se usar framework)			|
+     @Service							|
+     @RestController						|
+								|	
+4° — declaração da classe (modificador + nome + herança)	|
+     public class Emprestimo extends Thread {			|
+								|
+5° — atributos da classe (variáveis que o objeto guarda)	|
+     private double valor;					|
+     private int parcelas;					|
+     public static final double JUROS = 0.03;			|
+								|
+6° — construtores (como o objeto é criado)			|
+     public Emprestimo(double valor, int parcelas) {		|
+         this.valor = valor;					|
+         this.parcelas = parcelas;				|
+     }								|
+								|
+7° — métodos (o que o objeto sabe fazer)			|
+     public double calcularParcela() { }			|
+     public void mostrarResumo() { }				|
+								|
+8° — main (ponto de entrada — só em uma classe do projeto)	|
+     public static void main(String[] args) {			|
+         // aqui cria os objetos e chama os métodos		|
+     }								|
+								|
+9° — fecha a chave da classe					|
+     }								|
+```								|
+=================================================================
+---
+
+
+
+
+
+=================================================================
+## DENTRO DO MAIN — ordem de execução				|
+								|
+```								|
+1° — criar objetos com new (instanciar)				|
+     Scanner scanner = new Scanner(System.in);			|
+     Emprestimo emp = new Emprestimo(10000, 10);		|
+								|
+2° — ler dados se precisar (Scanner)				|
+     double valor = scanner.nextDouble();			|
+								|
+3° — processar (chamar métodos, fazer cálculos, decisões, loops)|
+     double parcela = emp.calcularParcela();			|
+     if (parcela > 5000) { ... }				|
+								|
+4° — exibir resultado						|
+     System.out.println("Parcela: " + parcela);			|
+     emp.mostrarResumo();					|
+								|
+5° — fechar recursos abertos					|
+     scanner.close();						|
+```								|
+=================================================================
+---
+
+
+
+
+
+=========================================================================
+## EXEMPLO COMPLETO APLICANDO A ORDEM					|
+									|
+Problema: calculadora de empréstimo					|
+									|
+#NÍVEL 1 — pensando antes:						|
+→ objetivo: calcular parcelas com juros					|
+→ framework: Java puro							|
+→ classes: Emprestimo (lógica) + Main (entrada)				|
+→ atributos de Emprestimo: double valor, int parcelas			|
+→ modificadores: private nos atributos, static final no JUROS		|
+→ métodos: calcularParcela() retorna double, mostrarResumo() void	|
+→ main fica na classe Main						|
+									|
+#NÍVEL 2 — escrevendo:							|
+									|
+#Arquivo 1: Emprestimo.java						|
+```java									|
+public class Emprestimo {						|
+									|
+    // 5° atributos							|
+    private double valor;						|
+    private int    parcelas;						|
+    public static final double JUROS = 0.03;				|
+									|
+    // 6° construtor							|
+    public Emprestimo(double valor, int parcelas) {			|
+        this.valor    = valor;						|
+        this.parcelas = parcelas;					|
+    }									|
+									|
+    // 7° métodos							|
+    public double calcularParcela() {					|
+        double taxa  = JUROS * parcelas;				|
+        double total = valor + (valor * taxa);				|
+        return total / parcelas;					|
+    }									|
+									|
+    public void mostrarResumo() {					|
+        System.out.printf("Parcelas: %d x R$ %,.2f%n",			|
+            parcelas, calcularParcela());				|
+    }									|
+}									|
+```									|
+									|
+#Arquivo 2: Main.java							|
+```java									|
+import java.util.Scanner;  // 2° import					|
+									|
+public class Main {         // 4° declaração				|
+									|
+    public static void main(String[] args) { // 8° main			|
+									|
+        // 1° criar objeto Scanner					|
+        Scanner scanner = new Scanner(System.in);			|
+									|
+        // 2° ler dados							|
+        System.out.println("Valor do empréstimo: ");			|
+        double valor = scanner.nextDouble();				|
+        scanner.nextLine();						|
+									|
+        System.out.println("Número de parcelas: ");			|
+        int parcelas = scanner.nextInt();				|
+        scanner.nextLine();						|
+									|
+        // 3° processar — cria objeto e chama método			|
+        Emprestimo emp = new Emprestimo(valor, parcelas);		|
+									|
+        // 4° exibir resultado						|
+        emp.mostrarResumo();						|
+									|
+        // 5° fechar recursos						|
+        scanner.close();						|
+    }									|
+}									|
+```									|
+=========================================================================
+---
+
+
+
+
+=========================================================================================
+## RESUMO — O QUE VAI PRIMEIRO E O QUE VAI DEPOIS					|
+											|
+```											|
+ANTES DE CODAR    → objetivo → classes → atributos → métodos → relações			|
+DENTRO DO ARQUIVO → package → import → classe → atributos → construtor → métodos → main	|
+DENTRO DO MAIN    → new → ler → processar → exibir → fechar				|
+```											|
+=========================================================================================

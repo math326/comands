@@ -1,3 +1,15 @@
+
+=================================================
+PARA GERAR UMA DOCUMENTAÇÃO DE SEU CÓDIGO JAVA:	|
+						|
+javadoc -d docs/ emprestimo.java		|
+cd docs						|
+firefox index.html				|
+=================================================
+
+
+
+
 DE FORMA GERAL VOCE PODE LER CÓDIGOS COMPLEXOS EM JAVA QUE VOCE NUNCA VIU NA VIDA E ENTENDER COMO ELE FUNCIONA APENAS SABENDO DOS IMPORTS NAS EDÇÕES DE URL DE DOCUMENTAÇÕES:
 
 
@@ -52,3 +64,12 @@ String     → .../java/lang/String.html  ← String fica em lang, não util			|
 Math       → .../java/lang/Math.html    ← Math também fica em lang			|
 											|
 =========================================================================================
+
+
+
+=========================
+voce pode salvar	|
+qual quer documentação	|
+da Oracle com 		|
+curl -O https:/???	|
+=========================

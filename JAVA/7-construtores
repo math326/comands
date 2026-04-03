@@ -1,0 +1,174 @@
+
+
+# EXISTEM 7 TIPOS DE CONSTRUTORES
+
+
+
+# CONSTRUTOR RECEBE OBJETO
+=========================================================================
+# QUANDO CLASSE PRECISA DE OBJETO DE OUTRO ARQUIVO PARA FUNCIONAR:	|
+									|
+// Main.java								|
+Scanner scanner = new Scanner(System.in);				|
+Emprestimo emp  = new Emprestimo(scanner); // passa o scanner		|
+									|
+									|
+// Emprestimo.java							|
+public Emprestimo(Scanner scanner) {					|
+    this.salario = scanner.nextDouble(); // usa o scanner recebido	|
+}									|
+									|
+									|
+									|
+Emprestimo    emp    =    new Emprestimo   (scanner);			|
+↑             ↑          ↑                 ↑				|
+tipo/classe   nome        cria o objeto     passa o objeto scanner	|
+              da          na memória        para dentro do construtor	|
+              variável						 	|
+=========================================================================
+
+
+
+
+
+# CONSTRUTOR VAZIO
+=================================================================
+#QUANDO A CLASSE COMEÇA COM CONSTRUTOR DE OUTRO ARQUIVO VAZIO:	|
+								|
+# Main.java							|
+Emprestimo emp = new Emprestimo(); #funciona sem passar nada	|
+								|
+								|
+# Emprestimo.java						|
+public class Emprestimo {					|
+    private double salario;					|
+    emp.setSalario(5000);  # define depois com método		|
+}								|
+=================================================================
+
+
+
+
+# CONSTRUTOR COM DADOS SIMPLES
+=========================================================================
+# QUANDO CLASSE PRECISA DE DADOS DE OUTRO ARQUIVO:			|
+									|
+# Main.java								|
+Emprestimo emp = new Emprestimo(5000, 10); # passa os dados na criação	|
+									|
+									|
+# Emprestimo.java							|
+public Emprestimo(double salario, int parcelas) {			|
+    this.salario  = salario;						|
+    this.parcelas = parcelas;						|
+}									|
+=========================================================================
+
+
+
+
+# CONSTRUTOR COM VALIDAÇÃO (É como o segurança da boate)
+=================================================================================
+# Main.java									|
+Conta c1 = new Conta("Matheus", 5000);  // funciona — dados válidos		|
+Conta c2 = new Conta("", 5000);         // lança erro — titular vazio		|
+Conta c3 = new Conta("João", -100);     // lança erro — saldo negativo		|
+										|
+										|
+										|
+# Conta.java									|
+public Conta(String titular, double saldo) {					|
+    if (titular == null || titular.isEmpty()) {					|
+        throw new IllegalArgumentException("Titular não pode ser vazio");	|
+    }										|
+    if (saldo < 0) {								|
+        throw new IllegalArgumentException("Saldo não pode ser negativo");	|
+    }										|
+    this.titular = titular;							|
+    this.saldo   = saldo;							|
+}										|
+=================================================================================
+
+
+
+
+
+# CONSTRUTOR THIS (É como 3 pratos, pequeno, médio, grande)
+=================================================================================
+# Main.java									|
+Emprestimo e1 = new Emprestimo(10000, 10, 0.05);  # completo			|
+Emprestimo e2 = new Emprestimo(10000, 10);         # juros padrão 3%		|
+Emprestimo e3 = new Emprestimo(10000);             # 12 parcelas e 3%		|
+										|
+										|
+# Emprestimo.java								|
+public Emprestimo(double valor, int parcelas, double juros) {  # completo	|
+    this.valor    = valor;							|
+    this.parcelas = parcelas;							|
+    this.juros    = juros;							|
+}										|
+public Emprestimo(double valor, int parcelas) {  # chama o completo		|
+    this(valor, parcelas, 0.03);  # juros padrão 3%				|
+}										|
+public Emprestimo(double valor) {  # chama o simplificado			|
+    this(valor, 12);  # parcelas padrão 12					|
+}										|
+=================================================================================
+
+
+
+
+
+# CONSTRUTOR PRIVATE SINGLETON (new trancado e usado uma vez)
+=================================================================
+# Main.java							|
+Banco b1 = Banco.getInstance();  # cria o banco			|
+Banco b2 = Banco.getInstance();  # pega O MESMO banco		|
+# b1 == b2  →  true — mesmo objeto na memóri			|
+								|
+								|
+# Banco.java							|
+public class Banco {						|
+    private static Banco instancia = null;			|
+								|
+    private Banco() { }  # private — ninguém usa new de fora	|
+								|
+    public static Banco getInstance() {				|
+        if (instancia == null) {				|
+            instancia = new Banco();  # cria só na primeira vez	|
+        }							|
+        return instancia;  # sempre o mesmo objeto		|
+    }								|
+}								|
+=================================================================
+
+
+
+
+
+# CONSTRUTOR SUPER (HERDA DA CLASSE PAI )
+=========================================================================
+# Main.java								|	
+ContaEspecial ce = new ContaEspecial("Matheus", 5000, 2000);		|
+# ordem de execução:							|
+# 1° super() executa — monta a parte de Conta				|
+# 2° this.limite = 2000 — monta a parte de ContaEspecial		|
+									|
+									|
+# Conta.java — classe PAI						|
+public Conta(String titular, double saldo) {				|
+    this.titular = titular;						|
+    this.saldo   = saldo;						|
+}									|
+									|
+									|
+# ContaEspecial.java — classe FILHA					|
+public class ContaEspecial extends Conta {				|
+    private double limite;						|
+									|
+    public ContaEspecial(String titular, double saldo, double limite) {	|
+        super(titular, saldo);  # chama o construtor do pai primeiro	|
+        this.limite = limite;   # depois define o que é só da filha	|
+    }									|
+}									|
+=========================================================================

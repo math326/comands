@@ -2,6 +2,55 @@
 
 ---
 
+
+
+# COMEÇO
+=================================================
+#SEMPRE CRIE NO COMEÇO DO PROJETO:              |
+                                                |
+public class nome {}                            |
+                                                |
+public static void main(String[] args) {}       |
+                                                |
+aqui cria atributos                             |
+                                                |
+depois cria objetos dos atributos               |
+                                                |
+#EX:                                            |
+# CRIANDO O MOLDE — a ficha em branco           |
+public class Pessoa {                           |
+    private String nome;   // campo em branco   |
+    private String cpf;    // campo em branco   |
+    private int    idade;  // campo em branco   |
+}                                               |
+                                                |
+# PREENCHENDO A FICHA — criando o objeto        |
+Pessoa matheus = new Pessoa();                  |
+matheus.nome  = "Matheus";                      |
+matheus.cpf   = "123.456.789-00";               |
+matheus.idade = 25;                             |
+=================================================
+
+
+
+
+#PRINT
+=================================================
+#REGRA PRINT                                    |
+System.out.println = cursor pula 1 linha        |
+                                                |
+System.out.print = cursor na mesma linha        |
+                                                |
+System.out.printf = imprime com formatação      |
+— você controla como o número aparece           |
+=================================================
+
+
+
+
+
+
+
 ## Como ler uma variável em Java
 
 ```

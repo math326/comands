@@ -1,0 +1,244 @@
+# VOCABULÁRIO DO JAVA PURO
+# Aprenda os nomes primeiro — o código vem depois
+
+---
+
+=================================================================================================
+## O QUE É CADA COISA										|
+												|
+classe       = molde para criar objetos — define o que o objeto tem e faz			|
+objeto       = produto criado a partir do molde — tem vida própria na memória = scanner		|
+instância    = sinônimo de objeto — "instância de Scanner" = objeto Scanner criado com new	|
+atributo     = variável que pertence à classe — o que o objeto guarda	= Scanner		|
+método       = função que pertence à classe — o que o objeto sabe fazer				|
+construtor   = método especial chamado quando cria o objeto com new				|
+interface    = contrato — lista de métodos que a classe promete ter				|
+herança      = quando uma classe filha herda tudo da classe pai com extends			|
+polimorfismo = mesmo método se comporta diferente dependendo do objeto				|
+encapsulamento = esconder dados internos — private + getters/setters				|
+pacote       = pasta que agrupa classes relacionadas — java.util, java.io			|
+=================================================================================================
+---
+
+
+
+
+
+=================================================
+## MODIFICADORES DE ACESSO — quem pode ver	|
+						|
+public    = qualquer classe em qualquer lugar	|
+private   = só a própria classe			|
+protected = a própria classe e as filhas	|
+(nada)    = só classes do mesmo pacote		|
+=================================================
+---
+
+
+
+
+
+
+=================================================================================
+## MODIFICADORES DE COMPORTAMENTO — como age					|
+										|
+static    = pertence à classe — não ao objeto — não precisa de new para usar	|
+final     = não muda depois de definido — variável vira constante		|
+abstract  = classe que não pode ser instanciada — só serve para herdar		|
+synchronized = só uma thread acessa por vez — evita conflito			|
+=================================================================================
+---
+
+
+
+=========================================================================================================
+## TIPOS DE VARIÁVEL — onde vive									|
+													|
+atributo         = variável declarada dentro da classe fora dos métodos = Scanner(Atri) scanner(OBJ)	|
+variável local   = declarada dentro de um método — morre quando o método termina			|
+parâmetro        = variável que o método recebe entre () — vive durante a execução do método		|
+constante        = variável static final — valor nunca muda — escrita em MAIÚSCULO			|
+=========================================================================================================
+---
+
+
+
+
+
+
+=================================================================
+## TIPOS DE DADO — o que guarda					|
+								|
+int       = número inteiro — ex: 25				|
+long      = número inteiro grande — ex: 1711584000000L		|
+double    = número decimal — ex: 3.14				|
+float     = decimal menor precisão — ex: 3.14f			|
+boolean   = verdadeiro ou falso — true / false			|
+char      = um único caractere — ex: 'A'			|
+byte      = número de -128 a 127				|
+String    = texto — ex: "Java" — é uma classe, não primitivo	|
+void      = nada — método que não retorna nada			|
+=================================================================
+---
+
+
+
+
+
+
+
+=========================================================================
+## ESTRUTURAS DE CONTROLE — o que direciona o fluxo			|
+									|
+if        = se — executa se condição for verdadeira			|
+else if   = senão se — segunda condição					|
+else      = senão — quando nenhuma condição foi verdadeira		|
+switch    = escolha entre vários casos					|
+for       = loop com contador — sabe quantas vezes vai repetir		|
+for-each  = loop que percorre cada item de uma coleção			|
+while     = loop que repete enquanto condição for verdadeira		|
+do-while  = loop que executa pelo menos uma vez antes de verificar	|
+break     = sai do loop imediatamente					|
+continue  = pula para a próxima volta do loop				|
+return    = sai do método e devolve um valor				|
+=========================================================================
+---
+
+
+
+
+
+
+
+=========================================================================
+## TRATAMENTO DE ERRO — o que lida com problemas			|
+									|
+try       = tenta executar um bloco que pode dar erro			|
+catch     = captura o erro se acontecer					|
+finally   = executa sempre — com ou sem erro				|
+throw     = lança um erro manualmente					|
+throws    = avisa na assinatura do método que ele pode lançar um erro	|
+Exception = classe base de todos os erros em Java			|
+RuntimeException = erro que acontece em tempo de execução		|
+=========================================================================
+---
+
+
+
+
+=========================================================================
+## OPERADORES — o que calcula e compara					|
+									|
++  -  *  /    = soma subtração multiplicação divisão			|
+%             = resto da divisão — ex: 10 % 3 = 1			|
+==            = igual — para primitivos					|
+!=            = diferente						|
+>  <  >=  <=  = maior menor maior-igual menor-igual			|
+&&            = E lógico — as duas condições verdadeiras		|
+||            = OU lógico — pelo menos uma verdadeira			|
+!             = NÃO — inverte o boolean					|
+=             = atribuição — guarda valor na variável			|
++=  -=  *=    = atribuição composta — x += 1 é igual a x = x + 1	|
+++  --        = incremento e decremento — x++ é igual a x = x + 1	|
+equals()      = compara conteúdo de objetos — use para String, nunca ==	|
+=========================================================================
+---
+
+
+
+
+
+=========================================================
+## PALAVRAS-CHAVE — palavras reservadas do Java		|
+							|
+class     = declara uma classe				|
+new       = cria um objeto na memória			|
+this      = referência ao próprio objeto atual		|
+super     = referência à classe pai			|
+extends   = herda de uma classe				|
+implements = implementa uma interface			|
+import    = importa uma classe de outro pacote		|
+package   = declara o pacote da classe atual		|
+null      = ausência de valor — objeto não inicializado	|
+instanceof = verifica se objeto é de determinado tipo	|
+=========================================================
+---
+
+
+
+
+
+=========================================================================
+## COLEÇÕES — estruturas que guardam vários objetos			|
+									|
+List      = lista ordenada — permite repetição				|
+ArrayList = implementação de List — a mais usada			|
+Set       = conjunto sem repetição e sem ordem				|
+HashSet   = implementação de Set					|
+Map       = pares chave → valor						|
+HashMap   = implementação de Map — a mais usada				|
+Queue     = fila — primeiro que entra é primeiro que sai		|
+Stack     = pilha — último que entra é primeiro que sai			|
+array     = coleção de tamanho fixo — String[] nomes = new String[3]	|
+=========================================================================
+---
+
+
+
+
+
+
+=================================================================
+## COMO PROGRAMADORES EXPERIENTES PENSAM ANTES DE CODAR		|
+								|
+Antes de escrever uma linha de código eles se perguntam:	|
+								|
+1. Quais CLASSES preciso criar?					|
+   → cada responsabilidade = uma classe				|
+								|
+2. Quais ATRIBUTOS cada classe precisa guardar?			|
+   → quais dados definem esse objeto?				|
+								|
+3. Quais MÉTODOS cada classe precisa ter?			|
+   → o que esse objeto sabe fazer?				|
+								|
+4. Quais MODIFICADORES cada atributo precisa?			|
+   → private se só a classe usa					|
+   → static se é igual para todos os objetos			|
+   → final se nunca muda					|
+								|
+5. Quais BIBLIOTECAS preciso importar?				|
+   → quais ferramentas prontas posso usar?			|
+								|
+6. Qual CLASSE controla o fluxo principal?			|
+   → onde fica o main?						|
+=================================================================
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## EXEMPLO DO RACIOCÍNIO NA PRÁTICA
+
+Problema: preciso de um sistema de empréstimo
+
+Pensando em palavras antes de codar:
+→ Preciso de uma CLASSE chamada Emprestimo
+→ Atributos: double valor, int parcelas, String nomeCliente
+→ Modificadores: private nos atributos — só a classe acessa
+→ Construtor: recebe valor, parcelas e nome
+→ Métodos: calcularParcela() retorna double, mostrarResumo() retorna void
+→ Constante: static final double JUROS = 0.03
+→ Bibliotecas: Scanner para ler input, BigDecimal para arredondar
+
+Só depois disso abre o editor e começa a escrever.
