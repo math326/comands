@@ -1,2 +1,104 @@
-android SDK = usado para fazer apps para android com IDE-(Android Studio)
 
+
+=================================================================
+1. Spring Framework						|
+								|
+Um dos frameworks mais usados no mundo Java.			|
+								|
+Base para aplicações web, APIs e microservices.			|
+Possui módulos como Spring Boot, Spring Security e Spring Data.	|
+Muito usado em empresas.					|
+=================================================================
+
+
+=================================================================
+2. Spring Boot							|
+								|
+Extensão do Spring que facilita criar aplicações rapidamente.	|
+								|
+Configuração automática						|
+Muito usado para APIs REST e microservices			|
+=================================================================
+
+
+=================================================================
+3. Hibernate							|
+								|
+Framework ORM para trabalhar com banco de dados.		|
+								|
+Converte objetos Java em tabelas SQL.				|
+Muito usado com Spring.						|
+=================================================================
+
+
+=================================================================
+4. Apache Struts						|
+								|
+Framework web antigo, mas historicamente importante.		|
+								|
+Baseado em padrão MVC						|
+Foi muito usado em aplicações corporativas.			|
+=================================================================
+
+
+=================================================
+5. JavaServer Faces				|
+						|
+Framework oficial Java para interfaces web.	|
+						|
+Usa componentes de UI no servidor		|
+Integra bem com Java EE / Jakarta EE.		|
+=================================================
+
+
+=========================================
+6. Play Framework			|
+					|
+Framework moderno inspirado em Rails.	|
+					|
+Focado em alta performance		|
+Suporta Java e Scala.			|
+=========================================
+
+
+
+=================================================
+7. Micronaut					|
+						|
+Framework moderno para microservices e cloud.	|
+						|
+Inicialização rápida				|
+Baixo consumo de memória.			|
+=================================================
+
+
+
+=========================================================
+8. Quarkus						|
+							|
+Framework criado para Kubernetes e cloud-native.	|
+							|
+Muito usado com containers				|
+Startup extremamente rápido.				|
+=========================================================
+
+
+
+=========================================================
+9. Vaadin						|
+							|
+Permite criar interfaces web usando apenas Java.	|
+							|
+UI baseada em componentes				|
+Não precisa escrever muito JavaScript.			|
+=========================================================
+
+
+=========================================================
+10. Android SDK						|
+							|
+Conjunto de ferramentas e APIs para criar apps Android.	|
+							|
+Usa principalmente Java e Kotlin			|
+Inclui bibliotecas, emulador e ferramentas de build.	|
+=========================================================

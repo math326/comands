@@ -1,0 +1,179 @@
+# 20 ANOTAÇÕES MAIS USADAS EM JAVA
+
+---
+=================================================================================
+# JAVA PURO — 5 anotações							|
+										|
+@Override         = sobrescreve método da classe pai ou interface		|
+                    sem ela o Java não avisa se você errar o nome do método	|
+										|
+@Deprecated       = método antigo — existe versão melhor, não use mais		|
+                    o compilador avisa quando alguém usar			|
+										|
+@SuppressWarnings = suprime aviso chato do compilador				|
+                    @SuppressWarnings("unchecked")				|
+										|
+@FunctionalInterface = interface que tem só um método abstrato			|
+                       garante que ninguém adicione um segundo método		|
+										|
+@SafeVarargs      = suprime aviso de operação insegura com varargs		|
+										|
+---										|
+=================================================================================
+
+
+
+
+=================================================================================================
+# SPRING BOOT — estrutura									|
+												|
+@SpringBootApplication = classe principal — ponto de entrada do sistema inteiro			|
+                         combina @Configuration + @EnableAutoConfiguration + @ComponentScan	|
+												|
+@RestController   = classe responde requisições HTTP e devolve JSON				|
+                    combina @Controller + @ResponseBody						|
+												|
+@Service          = classe contém lógica de negócio						|
+                    Spring gerencia o ciclo de vida dela					|
+												|
+@Repository       = classe acessa o banco de dados						|
+                    Spring adiciona tradução de erros de banco					|
+												|
+@Component        = classe genérica gerenciada pelo Spring					|
+                    quando não é Service nem Repository nem Controller				|
+												|
+@Configuration    = classe define configurações e beans do sistema				|
+												|
+@Bean             = método cria um objeto que o Spring vai gerenciar				|
+=================================================================================================
+---
+
+
+
+
+
+=================================================================================				     # SPRING BOOT — injeção e valores						     |
+										|
+@Autowired        = injeta dependência automaticamente — Spring cria o objeto	|
+                    pode ser no construtor, no atributo ou no método		|
+										|
+@Value            = injeta valor do application.properties direto na variável	|
+                    @Value("${spring.kafka.bootstrap-servers}")			|
+                    private String kafkaServers;				|
+										|
+@Qualifier        = escolhe qual implementação injetar quando tem mais de uma	|
+                    @Qualifier("emailNotificador")				|
+=================================================================================
+---
+
+
+
+
+
+===========================================================================
+# SPRING BOOT — rotas HTTP						|
+									|
+@GetMapping       = método responde requisição GET			|
+                    @GetMapping("/produtos")				|
+									|
+@PostMapping      = método responde requisição POST			|
+                    @PostMapping("/produtos")				|
+									|
+@PutMapping       = método responde requisição PUT			|
+                    @PutMapping("/produtos/{id}")			|
+									|
+@DeleteMapping    = método responde requisição DELETE			|
+                    @DeleteMapping("/produtos/{id}")			|
+									|
+@PathVariable     = pega variável dentro da URL				|
+                    @GetMapping("/produtos/{id}")			|
+                    public Produto buscar(@PathVariable Long id)	|
+									|
+@RequestBody      = pega o objeto JSON do corpo da requisição		|
+                    public Produto criar(@RequestBody Produto produto)	|
+									|
+@RequestParam     = pega parâmetro da URL				|
+                    @GetMapping("/buscar")				|
+                    public List<Produto> 				|
+		buscar(@RequestParam String nome)			|
+                    # /buscar?nome=java					|
+=========================================================================
+---
+
+
+
+
+
+
+=================================================================================
+# JPA / HIBERNATE — banco de dados						|
+										|
+@Entity           = classe é uma tabela no banco de dados			|
+@Id               = campo é a chave primária da tabela				|
+@GeneratedValue   = banco gera o valor do ID automaticamente			|
+@Column           = configura a coluna no banco					|
+                    @Column(nullable = false, unique = true)			|
+@OneToMany        = um registro tem vários do outro lado			|
+@ManyToOne        = vários registros apontam para um				|
+@Transactional    = tudo no método é uma transação — se falhar desfaz tudo	|
+=================================================================================
+---
+
+
+
+
+
+
+=================================================================================
+# SPRING KAFKA									|
+										|
+@EnableKafka      = ativa suporte a Kafka na aplicação				|
+@KafkaListener    = método fica ouvindo o tópico — executa quando chega mensagem|
+                    @KafkaListener(topics = "validacao-cpf", groupId = "grupo")	|
+=================================================================================
+---
+
+
+
+
+
+
+=========================================================
+# JUNIT 5 — testes					|
+							|
+@Test             = método é um teste automatizado	|
+@BeforeEach       = executa antes de cada teste		|
+@AfterEach        = executa depois de cada teste	|
+=========================================================
+---
+
+
+
+
+
+
+=========================================================================
+# LOMBOK — elimina código repetitivo					|
+									|
+@Data             = gera getters, setters, equals, hashCode e toString	|
+@Builder          = gera padrão builder para criar objetos		|
+@Slf4j            = cria variável log pronta para usar sem declarar	|
+=========================================================================
+---
+
+
+
+
+
+
+=========================================================================
+# REGRA RÁPIDA								|
+									|
+@ antes do nome         = é anotação — nunca classe nem método		|
+em cima da classe       = configura a classe inteira			|
+em cima do método       = configura só aquele método			|
+em cima do atributo     = configura só aquela variável			|
+anotação do Java puro   = funciona em qualquer projeto			|
+anotação do Spring      = só funciona se Spring estiver no pom.xml	|
+anotação do JPA         = só funciona se Hibernate estiver no pom.xml	|
+=========================================================================

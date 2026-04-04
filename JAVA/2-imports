@@ -1,0 +1,76 @@
+
+==================================================================================================
+IMPORTS JAVA PURO
+
+
+
+import java.util.List = Interface usada para trabalhar com listas de objetos.
+
+import java.util.ArrayList = Implementação de lista dinâmica que pode crescer conforme necessário.
+
+import java.util.Map = Interface usada para armazenar dados em pares chave-valor.
+
+import java.util.HashMap = Implementação de Map baseada em tabela hash para acesso rápido.
+
+import java.util.Set = Interface que representa uma coleção sem elementos duplicados.
+
+import java.util.HashSet = Implementação de Set que não permite valores repetidos.
+
+import java.util.Collections = Classe utilitária com métodos para manipular coleções (ordenar, inverter etc.).
+
+import java.util.Iterator = Permite percorrer elementos de uma coleção.
+
+import java.util.Scanner = Classe usada para ler dados do teclado ou arquivos.
+
+import java.util.Random = Gera números aleatórios.
+
+import java.lang.String = Classe usada para representar texto.
+
+import java.lang.Math = Fornece funções matemáticas como raiz, potência e seno.
+
+import java.lang.System = Permite acesso ao sistema, como entrada e saída padrão.
+
+import java.lang.Thread = Permite criar e controlar threads (multithreading).
+
+import java.io.File = Representa arquivos e diretórios no sistema.
+
+import java.io.FileReader = Permite ler arquivos de texto.
+
+import java.io.FileWriter = Permite escrever dados em arquivos.
+
+import java.io.BufferedReader = Lê texto de forma eficiente usando buffer.
+
+import java.io.BufferedWriter = Escreve texto em arquivos com melhor desempenho.
+
+import java.time.LocalDate = Classe moderna para trabalhar com datas.
+
+
+
+
+
+========================================================================================
+IMPORTS DO ANDROID SDK:
+
+
+
+import android.app.Activity = Classe base para criar telas de aplicativos Android.
+
+import android.os.Bundle = Usado para passar dados entre Activities e salvar estado.
+
+import android.content.Intent = Usado para iniciar Activities ou enviar mensagens entre componentes.
+
+import android.widget.TextView = Componente de interface para mostrar texto na tela.
+
+import android.widget.Button = Componente de interface que representa um botão clicável.
+
+import android.view.View = Classe base para todos os elementos de interface do Android.
+
+import android.widget.Toast = Mostra pequenas mensagens temporárias na tela.
+
+import android.util.Log = Usado para registrar mensagens de debug no Android.
+
+import androidx.appcompat.app.AppCompatActivity = Versão moderna de Activity com suporte a compatibilidade.
+
+import androidx.recyclerview.widget.RecyclerView = Componente usado para exibir listas grandes de dados de forma eficiente.
+
+
